@@ -57,100 +57,103 @@
 
     <main class="dashboard">
         <h3 id="welcomeMsg">Welcome</h3>
-        <p class="muted">Manage your tools, apps, and development resources all in one place!</p>
+        <p class="muted">Click "My Tools" in the menu to manage your tools, apps, and development resources!</p>
 
-        <!-- Feature Tabs -->
-        <div class="dashboard-tabs">
-            <button class="tab-btn active" data-tab="tools">
-                <span class="tab-icon">🛠️</span> My Tools
-            </button>
-            <button class="tab-btn" data-tab="apps">
-                <span class="tab-icon">📱</span> Apps
-            </button>
-            <button class="tab-btn" data-tab="dev-resources">
-                <span class="tab-icon">💻</span> Dev Resources
-            </button>
-            <button class="tab-btn" data-tab="cloud-storage">
-                <span class="tab-icon">☁️</span> Cloud Storage
-            </button>
-        </div>
+        <!-- Tools/Apps/Resources Section - Hidden by default -->
+        <div id="toolsSection" class="tools-section" style="display: none;">
+            <!-- Feature Tabs -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" data-tab="tools">
+                    <span class="tab-icon">🛠️</span> My Tools
+                </button>
+                <button class="tab-btn" data-tab="apps">
+                    <span class="tab-icon">📱</span> Apps
+                </button>
+                <button class="tab-btn" data-tab="dev-resources">
+                    <span class="tab-icon">💻</span> Dev Resources
+                </button>
+                <button class="tab-btn" data-tab="cloud-storage">
+                    <span class="tab-icon">☁️</span> Cloud Storage
+                </button>
+            </div>
 
-        <!-- Tools Section -->
-        <div id="tools" class="tab-content active">
-            <h4>My Tools</h4>
-            <p class="section-desc">Store and manage your tools locally and online</p>
-            <div class="tools-grid" id="toolsList">
-                <div class="tool-card">
-                    <div class="tool-icon">🔧</div>
-                    <h5>Tool Name</h5>
-                    <p>Description of your tool</p>
-                    <div class="tool-actions">
-                        <button class="btn-small">Local</button>
-                        <button class="btn-small">Cloud</button>
+            <!-- Tools Section -->
+            <div id="tools" class="tab-content active">
+                <h4>My Tools</h4>
+                <p class="section-desc">Store and manage your tools locally and online</p>
+                <div class="tools-grid" id="toolsList">
+                    <div class="tool-card">
+                        <div class="tool-icon">🔧</div>
+                        <h5>Tool Name</h5>
+                        <p>Description of your tool</p>
+                        <div class="tool-actions">
+                            <button class="btn-small">Local</button>
+                            <button class="btn-small">Cloud</button>
+                        </div>
                     </div>
                 </div>
+                <button class="btn-add">+ Add New Tool</button>
             </div>
-            <button class="btn-add">+ Add New Tool</button>
-        </div>
 
-        <!-- Apps Section -->
-        <div id="apps" class="tab-content">
-            <h4>My Apps</h4>
-            <p class="section-desc">Organize and manage your applications</p>
-            <div class="apps-grid" id="appsList">
-                <div class="app-card">
-                    <div class="app-icon">📱</div>
-                    <h5>App Name</h5>
-                    <p>App description</p>
-                    <div class="app-status">
-                        <span class="status-badge">Active</span>
+            <!-- Apps Section -->
+            <div id="apps" class="tab-content">
+                <h4>My Apps</h4>
+                <p class="section-desc">Organize and manage your applications</p>
+                <div class="apps-grid" id="appsList">
+                    <div class="app-card">
+                        <div class="app-icon">📱</div>
+                        <h5>App Name</h5>
+                        <p>App description</p>
+                        <div class="app-status">
+                            <span class="status-badge">Active</span>
+                        </div>
                     </div>
                 </div>
+                <button class="btn-add">+ Add App</button>
             </div>
-            <button class="btn-add">+ Add App</button>
-        </div>
 
-        <!-- Development Resources Section -->
-        <div id="dev-resources" class="tab-content">
-            <h4>Development Resources</h4>
-            <p class="section-desc">Code snippets, documentation, and development tools</p>
-            <div class="resources-grid" id="resourcesList">
-                <div class="resource-card">
-                    <h5>JavaScript Snippets</h5>
-                    <p class="resource-type">Code Snippets</p>
-                    <p class="resource-desc">Useful JavaScript code for daily development</p>
-                    <a href="#" class="resource-link">View →</a>
-                </div>
-                <div class="resource-card">
-                    <h5>API Documentation</h5>
-                    <p class="resource-type">Documentation</p>
-                    <p class="resource-desc">Complete API reference guide</p>
-                    <a href="#" class="resource-link">View →</a>
-                </div>
-            </div>
-            <button class="btn-add">+ Add Resource</button>
-        </div>
-
-        <!-- Cloud Storage Section -->
-        <div id="cloud-storage" class="tab-content">
-            <h4>Cloud Storage</h4>
-            <p class="section-desc">Store and sync your files online</p>
-            <div class="storage-info">
-                <div class="storage-bar">
-                    <div class="storage-used" style="width: 35%;"></div>
-                </div>
-                <p class="storage-text">3.5 GB of 10 GB used</p>
-            </div>
-            <div class="files-list" id="filesList">
-                <div class="file-item">
-                    <span class="file-icon">📄</span>
-                    <div class="file-info">
-                        <p class="file-name">project-config.json</p>
-                        <p class="file-meta">2.3 MB • Nov 11</p>
+            <!-- Development Resources Section -->
+            <div id="dev-resources" class="tab-content">
+                <h4>Development Resources</h4>
+                <p class="section-desc">Code snippets, documentation, and development tools</p>
+                <div class="resources-grid" id="resourcesList">
+                    <div class="resource-card">
+                        <h5>JavaScript Snippets</h5>
+                        <p class="resource-type">Code Snippets</p>
+                        <p class="resource-desc">Useful JavaScript code for daily development</p>
+                        <a href="#" class="resource-link">View →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h5>API Documentation</h5>
+                        <p class="resource-type">Documentation</p>
+                        <p class="resource-desc">Complete API reference guide</p>
+                        <a href="#" class="resource-link">View →</a>
                     </div>
                 </div>
+                <button class="btn-add">+ Add Resource</button>
             </div>
-            <button class="btn-add">+ Upload File</button>
+
+            <!-- Cloud Storage Section -->
+            <div id="cloud-storage" class="tab-content">
+                <h4>Cloud Storage</h4>
+                <p class="section-desc">Store and sync your files online</p>
+                <div class="storage-info">
+                    <div class="storage-bar">
+                        <div class="storage-used" style="width: 35%;"></div>
+                    </div>
+                    <p class="storage-text">3.5 GB of 10 GB used</p>
+                </div>
+                <div class="files-list" id="filesList">
+                    <div class="file-item">
+                        <span class="file-icon">📄</span>
+                        <div class="file-info">
+                            <p class="file-name">project-config.json</p>
+                            <p class="file-meta">2.3 MB • Nov 11</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-add">+ Upload File</button>
+            </div>
         </div>
     </main>
 
@@ -168,6 +171,17 @@
     <script src="scripts/auth.js"></script>
 
     <script>
+        // Show tools section when "My Tools" is clicked from dropdown
+        const myToolsMenuLink = document.querySelector('a[href="#mytools"]');
+        if (myToolsMenuLink) {
+            myToolsMenuLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('toolsSection').style.display = 'block';
+                // Close the dropdown menu
+                document.querySelector('.profile-dropdown').classList.remove('active');
+            });
+        }
+
         // Tab switching functionality
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function () {

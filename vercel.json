@@ -1,5 +1,5 @@
 {
-  "buildCommand": "# (no build needed)",
-  "outputDirectory": "ToolHouseBit/src",
-  "public": "ToolHouseBit/src"
+    "buildCommand": "# (no build needed)",
+    "outputDirectory": "ToolHouseBit/src",
+    "public": true
 }

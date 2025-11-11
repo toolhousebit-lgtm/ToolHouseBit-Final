@@ -1,4 +1,9 @@
 {
-    "buildCommand": "# (no build needed)",
-    "rootDirectory": "ToolHouseBit/src"
+    "version": 2,
+    "builds": [
+        {
+            "src": "ToolHouseBit/src/**",
+            "use": "@vercel/static"
+        }
+    ]
 }

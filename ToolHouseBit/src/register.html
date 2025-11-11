@@ -70,7 +70,7 @@
 
             <script>
                 console.log('Register script loading...');
-                
+
                 // Firebase configuration
                 const firebaseConfig = {
                     apiKey: "AIzaSyDFb6EfFBJ28V83gbmIHFJwInFYA3e6Xpw",
@@ -96,16 +96,16 @@
                 document.addEventListener('DOMContentLoaded', function () {
                     console.log('DOM loaded');
                     const googleSignUpBtn = document.getElementById('googleSignUpBtn');
-                    
+
                     if (googleSignUpBtn) {
                         console.log('Google button found, attaching event listener');
                         googleSignUpBtn.addEventListener('click', function (e) {
                             e.preventDefault();
                             console.log('Google Sign-Up button clicked');
-                            
+
                             const provider = new firebase.auth.GoogleAuthProvider();
                             console.log('Provider created');
-                            
+
                             firebase.auth().signInWithPopup(provider)
                                 .then((result) => {
                                     console.log('Google Sign-Up successful:', result.user);

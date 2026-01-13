@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Profile — ToolHouseBit</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/auth.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html" class="brand">ToolHouseBit</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </div>
+            </nav>
+        </header>
+
+        <header class="form-header">
+            <a href="dashboard.html">← Back</a>
+            <h2>Profile</h2>
+        </header>
+
+        <main class="profile-container">
+            <div class="profile-card">
+                <!-- Profile Picture -->
+                <div class="profile-pic-section">
+                    <img id="profilePicLarge" src="assets/default-avatar.png"
+                        alt="Profile Picture" class="profile-pic-large">
+                    <button id="changePicBtn" class="btn-secondary">Change
+                        Picture</button>
+                    <input type="file" id="picInput" accept="image/*"
+                        style="display: none;">
+                </div>
+
+                <!-- User Information Form -->
+                <form id="profileForm" class="profile-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username"
+                            readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address"
+                            placeholder="Enter your address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-field">
+                            <input type="password" id="password" name="password"
+                                placeholder="••••••••">
+                            <button type="button" class="show-code-btn"
+                                onclick="togglePasswordVisibility('password')">Show</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-field">
+                            <input type="password" id="confirmPassword"
+                                name="confirmPassword" placeholder="••••••••">
+                            <button type="button" class="show-code-btn"
+                                onclick="togglePasswordVisibility('confirmPassword')">Show</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save
+                        Changes</button>
+                    <button type="button" id="cancelBtn"
+                        class="btn-secondary">Cancel</button>
+                </form>
+
+                <p id="profileMsg" class="msg"></p>
+            </div>
+        </main>
+
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeSwitch" class="toggle-checkbox">
+            <label for="darkModeSwitch" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+
+        <script src="scripts/dark-mode.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script>
+        // Load and display user profile data
+        function loadProfileData() {
+            try {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser) {
+                    document.getElementById('username').value = currentUser.username || '';
+                    document.getElementById('email').value = currentUser.email || '';
+                    document.getElementById('address').value = currentUser.address || '';
+                    
+                    // Set profile picture
+                    if (currentUser.avatar) {
+                        document.getElementById('profilePicLarge').src = currentUser.avatar;
+                    }
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.type = field.type === 'password' ? 'text' : 'password';
+        }
+
+        // Handle profile picture change
+        document.getElementById('changePicBtn').addEventListener('click', function() {
+            document.getElementById('picInput').click();
+        });
+
+        document.getElementById('picInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imageData = event.target.result;
+                    document.getElementById('profilePicLarge').src = imageData;
+                    
+                    // Update in localStorage
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    currentUser.avatar = imageData;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msgEl = document.getElementById('profileMsg');
+            msgEl.textContent = '';
+
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validate password if provided
+            if (password && password !== confirmPassword) {
+                msgEl.textContent = 'Passwords do not match.';
+                msgEl.style.color = '#ef4444';
+                return;
+            }
+
+            try {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                
+                // Update address
+                currentUser.address = address;
+
+                // Update password if provided
+                if (password) {
+                    // Update password in users list
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const userIndex = users.findIndex(u => u.username === currentUser.username);
+                    if (userIndex !== -1) {
+                        users[userIndex].password = password;
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+                }
+
+                // Save updated user data
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                msgEl.textContent = 'Profile updated successfully!';
+                msgEl.style.color = '#10b981';
+                
+                // Clear password fields
+                document.getElementById('password').value = '';
+                document.getElementById('confirmPassword').value = '';
+
+                // Redirect back to dashboard after 1.5 seconds
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } catch (error) {
+                msgEl.textContent = 'Error updating profile: ' + error.message;
+                msgEl.style.color = '#ef4444';
+            }
+        });
+
+        // Handle cancel button
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Load profile data on page load
+        document.addEventListener('DOMContentLoaded', loadProfileData);
+        </script>
+    </body>
+
+</html>

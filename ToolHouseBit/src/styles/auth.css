@@ -3,6 +3,8 @@
     --bg: #f7f8fb;
     --card: #ffffff;
     --accent: #ff6b6b;
+    --accent-1: #76250d;
+    --accent-2: #0D5E76;
     --muted: #6b7280;
 }
 
@@ -24,19 +26,24 @@ body {
 
 .form-container label {
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
     font-size: 14px;
     color: #222;
     position: relative;
+    background: transparent;
+    padding: 0;
 }
 
 .form-container input[type="password"],
-.form-container input[type="text"] {
+.form-container input[type="text"],
+.form-container input[type="email"] {
     width: 100%;
-    padding: 8px 35px 8px 12px;
+    padding: 10px 35px 10px 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-top: 6px;
+    background: #fff;
 }
 
 .show-code-btn {
@@ -78,19 +85,20 @@ body {
     background-repeat: no-repeat;
 }
 
-.form-container input {
+.form-container input[type="email"] {
     width: 100%;
-    padding: 10px;
+    padding: 10px 12px;
     margin-top: 6px;
     box-sizing: border-box;
-    border: 1px solid #e6e9ee;
-    border-radius: 8px
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: transparent;
 }
 
 .form-container button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background: var(--accent);
+    background: var(--accent-2);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -100,7 +108,7 @@ body {
 
 .form-container button[type="submit"]:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(255, 107, 107, 0.12)
+    box-shadow: 0 12px 28px rgba(13, 94, 118, 0.12)
 }
 
 .form-header {
@@ -324,7 +332,7 @@ body {
 }
 
 .dashboard-search button {
-    background: var(--accent);
+    background: var(--accent-2);
     color: #fff;
     border: none;
     padding: 8px 12px;
@@ -430,7 +438,7 @@ body {
 .google-signin-btn {
     width: 100%;
     padding: 12px 16px;
-    background-color: #4285f4;
+    background-color: var(--accent-1);
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -447,16 +455,16 @@ body {
 }
 
 .google-signin-btn:hover {
-    background-color: #357ae8;
-    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+    background-color: #5a3415;
+    box-shadow: 0 2px 8px rgba(118, 37, 13, 0.3);
 }
 
 .google-signin-btn:active {
-    background-color: #2d5ac9;
+    background-color: #4a1f0a;
 }
 
 .google-signin-btn:disabled {
-    background-color: #4285f4;
+    background-color: var(--accent-1);
     color: rgba(255, 255, 255, 0.6);
     cursor: not-allowed;
     opacity: 0.7;
@@ -792,5 +800,76 @@ body {
 .btn-add:hover {
     background: #ff5555;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
+/* Dark Mode Styles for Auth Pages */
+body.dark-mode {
+    --bg: #1a1a1a;
+    --card: #2d2d2d;
+    --muted: #b0b0b0;
+}
+
+body.dark-mode .form-container {
+    background: var(--card);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .form-container label {
+    color: #e0e0e0;
+    background: transparent;
+    padding: 0;
+}
+
+body.dark-mode .form-container input[type="password"],
+body.dark-mode .form-container input[type="text"],
+body.dark-mode .form-container input[type="email"],
+body.dark-mode .form-container input {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark-mode .form-container input::placeholder {
+    color: #999;
+}
+
+body.dark-mode .form-header {
+    background: #0a0a0a;
+}
+
+body.dark-mode .dashboard {
+    background: var(--card);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .dashboard h2,
+body.dark-mode .dashboard h3,
+body.dark-mode .dashboard h4 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .dashboard p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .tab-btn {
+    color: #e0e0e0;
+    border-bottom-color: #444;
+}
+
+body.dark-mode .tab-btn.active {
+    border-bottom-color: var(--accent-2);
+}
+
+body.dark-mode .search-results {
+    background: var(--card);
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .muted {
+    color: var(--muted);
+}
+
+box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
 }

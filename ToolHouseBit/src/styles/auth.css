@@ -870,6 +870,3 @@ body.dark-mode .search-results {
 body.dark-mode .muted {
     color: var(--muted);
 }
-
-box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
-}

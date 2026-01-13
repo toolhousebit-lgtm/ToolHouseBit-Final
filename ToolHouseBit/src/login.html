@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Login — ToolHouseBit</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/auth.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
-        rel="stylesheet">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Login — ToolHouseBit</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/auth.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body>
-    <header>
-        <nav class="nav">
-            <a href="index.html" class="brand">ToolHouseBit</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
-                <a href="dashboard.html">Dashboard</a>
-            </div>
-        </nav>
-    </header>
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html" class="brand">ToolHouseBit</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </div>
+            </nav>
+        </header>
 
-    <header class="form-header">
-        <a href="index.html">← Home</a>
-        <h2>Login</h2>
-    </header>
+        <header class="form-header">
+            <a href="index.html">← Home</a>
+            <h2>Login</h2>
+        </header>
 
-    <main class="form-container">
-        <form id="loginForm">
-            <label>
-                Username or Email
-                <input type="text" name="identifier" required>
-            </label>
-            <label>
-                Password
-                <input type="password" name="password" required>
-                <button type="button" class="show-code-btn" onclick="togglePasswordVisibility('password')">Show</button>
-            </label>
-            <button type="submit">Login</button>
-            <div style="text-align: center; margin: 30px 0;">
-                <p style="color: #5f6368; font-size: 13px; margin-bottom: 15px;">Or continue with</p>
-                <button type="button" id="googleSignInBtn" class="google-signin-btn">
-                    <div class="google-logo">G</div>
-                    <span>Sign in with Google</span>
-                </button>
-            </div>
-            <p class="muted">Don't have an account? <a href="register.html">Register</a></p>
-            <p id="lg-msg" class="msg"></p>
-        </form>
-    </main>
+        <main class="form-container">
+            <form id="loginForm">
+                <label>
+                    Username or Email
+                    <input type="text" name="identifier" required>
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" required>
+                    <button type="button" class="show-code-btn"
+                        onclick="togglePasswordVisibility('password')">Show</button>
+                </label>
+                <button type="submit">Login</button>
+                <div style="text-align: center; margin: 30px 0;">
+                    <p
+                        style="color: #5f6368; font-size: 13px; margin-bottom: 15px;">Or
+                        continue with</p>
+                    <button type="button" id="googleSignInBtn"
+                        class="google-signin-btn">
+                        <div class="google-logo">G</div>
+                        <span>Sign in with Google</span>
+                    </button>
+                </div>
+                <p class="muted">Don't have an account? <a
+                        href="register.html">Register</a></p>
+                <p id="lg-msg" class="msg"></p>
+            </form>
+        </main>
 
-    <script src="scripts/ui.js"></script>
-    <script src="scripts/auth.js"></script>
+        <script src="scripts/ui.js"></script>
+        <script src="scripts/auth.js"></script>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+        <!-- Firebase SDK -->
+        <script
+            src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 
-    <script>
+        <script>
         console.log('Script loading...');
 
         // Firebase configuration
@@ -123,7 +130,7 @@
             }
         });
     </script>
-    <script>
+        <script>
         function togglePasswordVisibility(inputName) {
             const input = document.querySelector(`input[name="${inputName}"]`);
             if (input.type === 'password') {
@@ -133,6 +140,17 @@
             }
         }
     </script>
-</body>
+
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeSwitch" class="toggle-checkbox">
+            <label for="darkModeSwitch" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+
+        <script src="scripts/dark-mode.js"></script>
+    </body>
 
 </html>

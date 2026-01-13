@@ -26,13 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
 
-            // Send email using EmailJS
+            // Send email to owner
             emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                to_email: 'your-email@gmail.com', // YOUR EMAIL ADDRESS
                 from_name: name,
-                reply_to: email,
+                user_email: email,
                 subject: subject,
                 message: message,
             })
+                .then(() => {
+                    // Send confirmation email to user
+                    return emailjs.send(SERVICE_ID, 'template_confirmation', {
+                        to_email: email,
+                        user_name: name,
+                    });
+                })
                 .then(() => {
                     alert('Thank you for your feedback! We will get back to you soon.');
                     feedbackForm.reset();

@@ -1,150 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Register — ToolHouseBit</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/auth.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
-        rel="stylesheet">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Register — ToolHouseBit</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/auth.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body>
-    <header>
-        <nav class="nav">
-            <a href="index.html" class="brand">ToolHouseBit</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
-                <a href="dashboard.html">Dashboard</a>
-            </div>
-        </nav>
-    </header>
+    <body>
+        <header>
+            <nav class="nav">
+                <a href="index.html" class="brand">ToolHouseBit</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="login.html">Login</a>
+                    <a href="register.html">Register</a>
+                    <a href="dashboard.html">Dashboard</a>
+                </div>
+            </nav>
+        </header>
 
-    <header class="form-header">
-        <a href="index.html">← Home</a>
-        <h2>Register</h2>
-    </header>
+        <header class="form-header">
+            <a href="index.html">← Home</a>
+            <h2>Register</h2>
+        </header>
 
-    <main class="form-container">
-        <form id="registerForm">
-            <label>
-                Username
-                <input type="text" name="username" required>
-            </label>
-            <label>
-                Email
-                <input type="email" name="email" required>
-            </label>
-            <label>
-                Password
-                <input type="password" name="password" required minlength="6">
-                <button type="button" class="show-code-btn" onclick="togglePasswordVisibility('password')">Show</button>
-            </label>
-            <label>
-                Confirm Password
-                <input type="password" name="confirm" required minlength="6">
-                <button type="button" class="show-code-btn" onclick="togglePasswordVisibility('confirm')">Show</button>
-            </label>
-            <button type="submit">Register</button>
-            <div style="text-align: center; margin: 30px 0;">
-                <p style="color: #5f6368; font-size: 13px; margin-bottom: 15px;">Or continue with</p>
-                <button type="button" id="googleSignUpBtn" class="google-signin-btn">
-                    <div class="google-logo">G</div>
-                    <span>Sign up with Google</span>
-                </button>
-            </div>
-            <p class="muted">Already have an account? <a href="login.html">Login</a></p>
-            <p id="rg-msg" class="msg"></p>
+        <main class="form-container">
+            <form id="registerForm">
+                <label>
+                    Username
+                    <input type="text" name="username" required>
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" required>
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" required
+                        minlength="6">
+                    <button type="button" class="show-code-btn"
+                        onclick="togglePasswordVisibility('password')">Show</button>
+                </label>
+                <label>
+                    Confirm Password
+                    <input type="password" name="confirm" required
+                        minlength="6">
+                    <button type="button" class="show-code-btn"
+                        onclick="togglePasswordVisibility('confirm')">Show</button>
+                </label>
+                <button type="submit">Register</button>
+                <div style="text-align: center; margin: 30px 0;">
+                    <p
+                        style="color: #5f6368; font-size: 13px; margin-bottom: 15px;">Or
+                        continue with</p>
+                    <button type="button" id="googleSignUpBtn"
+                        class="google-signin-btn">
+                        <div class="google-logo">G</div>
+                        <span>Sign up with Google</span>
+                    </button>
+                </div>
+                <p class="muted">Already have an account? <a
+                        href="login.html">Login</a></p>
+                <p id="rg-msg" class="msg"></p>
+            </form>
+        </main>
 
-            <script src="scripts/ui.js"></script>
-            <script src="scripts/auth.js"></script>
+        <script src="scripts/ui.js"></script>
+        <script src="scripts/auth.js"></script>
 
-            <!-- Firebase SDK -->
-            <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+        <!-- Firebase SDK -->
+        <script
+            src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 
-            <script>
-                console.log('Register script loading...');
+        <script>
+        console.log('Register script loading...');
 
-                // Firebase configuration
-                const firebaseConfig = {
-                    apiKey: "AIzaSyDFb6EfFBJ28V83gbmIHFJwInFYA3e6Xpw",
-                    authDomain: "toolhousebit-997be.firebaseapp.com",
-                    projectId: "toolhousebit-997be",
-                    storageBucket: "toolhousebit-997be.firebasestorage.app",
-                    messagingSenderId: "804791876419",
-                    appId: "1:804791876419:web:a54f5a6c7291bcc2240df6",
-                    measurementId: "G-7B4B8ZD8R6"
-                };
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFb6EfFBJ28V83gbmIHFJwInFYA3e6Xpw",
+            authDomain: "toolhousebit-997be.firebaseapp.com",
+            projectId: "toolhousebit-997be",
+            storageBucket: "toolhousebit-997be.firebasestorage.app",
+            messagingSenderId: "804791876419",
+            appId: "1:804791876419:web:a54f5a6c7291bcc2240df6",
+            measurementId: "G-7B4B8ZD8R6"
+        };
 
-                // Initialize Firebase
-                if (firebase) {
-                    console.log('Firebase loaded');
-                    firebase.initializeApp(firebaseConfig);
-                    const auth = firebase.auth();
-                    console.log('Firebase initialized');
-                } else {
-                    console.error('Firebase not loaded!');
-                }
+        // Initialize Firebase
+        if (firebase) {
+            console.log('Firebase loaded');
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            console.log('Firebase initialized');
+        } else {
+            console.error('Firebase not loaded!');
+        }
 
-                // Wait for DOM to be ready
-                document.addEventListener('DOMContentLoaded', function () {
-                    console.log('DOM loaded');
-                    const googleSignUpBtn = document.getElementById('googleSignUpBtn');
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM loaded');
+            const googleSignUpBtn = document.getElementById('googleSignUpBtn');
 
-                    if (googleSignUpBtn) {
-                        console.log('Google button found, attaching event listener');
-                        googleSignUpBtn.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            console.log('Google Sign-Up button clicked');
+            if (googleSignUpBtn) {
+                console.log('Google button found, attaching event listener');
+                googleSignUpBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    console.log('Google Sign-Up button clicked');
 
-                            const provider = new firebase.auth.GoogleAuthProvider();
-                            console.log('Provider created');
+                    const provider = new firebase.auth.GoogleAuthProvider();
+                    console.log('Provider created');
 
-                            firebase.auth().signInWithPopup(provider)
-                                .then((result) => {
-                                    console.log('Google Sign-Up successful:', result.user);
-                                    // Save the user to localStorage so the app recognizes them as logged in
-                                    const userData = {
-                                        username: result.user.displayName || result.user.email.split('@')[0],
-                                        email: result.user.email,
-                                        avatar: result.user.photoURL || undefined
-                                    };
-                                    localStorage.setItem('currentUser', JSON.stringify(userData));
-                                    window.location.href = 'dashboard.html';
-                                })
-                                .catch((error) => {
-                                    console.error('Sign-up error:', error);
-                                    console.error('Error code:', error.code);
-                                    console.error('Error message:', error.message);
-                                    document.getElementById('rg-msg').textContent = 'Sign-up failed: ' + error.message;
-                                });
+                    firebase.auth().signInWithPopup(provider)
+                        .then((result) => {
+                            console.log('Google Sign-Up successful:', result.user);
+                            // Save the user to localStorage so the app recognizes them as logged in
+                            const userData = {
+                                username: result.user.displayName || result.user.email.split('@')[0],
+                                email: result.user.email,
+                                avatar: result.user.photoURL || undefined
+                            };
+                            localStorage.setItem('currentUser', JSON.stringify(userData));
+                            window.location.href = 'dashboard.html';
+                        })
+                        .catch((error) => {
+                            console.error('Sign-up error:', error);
+                            console.error('Error code:', error.code);
+                            console.error('Error message:', error.message);
+                            document.getElementById('rg-msg').textContent = 'Sign-up failed: ' + error.message;
                         });
-                    } else {
-                        console.error('Google Sign-Up button not found');
-                    }
                 });
-            </script>
-            <script>
-                function togglePasswordVisibility(inputName) {
-                    const input = document.querySelector(`input[name="${inputName}"]`);
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                    } else {
-                        input.type = 'password';
-                    }
-                }
+            } else {
+                console.error('Google Sign-Up button not found');
+            }
+        });
+        </script>
 
-                function toggleAllPasswords() {
-                    togglePasswordVisibility('password');
-                    togglePasswordVisibility('confirm');
-                }
-            </script>
-</body>
+        <script>
+        function togglePasswordVisibility(inputName) {
+            const input = document.querySelector(`input[name="${inputName}"]`);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        }
+
+        function toggleAllPasswords() {
+            togglePasswordVisibility('password');
+            togglePasswordVisibility('confirm');
+        }
+        </script>
+
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeSwitch" class="toggle-checkbox">
+            <label for="darkModeSwitch" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+
+        <script src="scripts/dark-mode.js"></script>
+    </body>
 
 </html>
